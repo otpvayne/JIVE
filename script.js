@@ -1,14 +1,23 @@
+// Declarando variables
+var formulario_login = document.querySelector(".formulario__login");
+var formulario_register = document.querySelector(".formulario__register");
+var contenedor_login_register = document.querySelector(".contenedor__login-register");
+var caja_trasera_login = document.querySelector(".caja__trasera-login");
+var caja_trasera_register = document.querySelector(".caja__trasera-register");
+
+
 document.getElementById("formulario__register").addEventListener("submit", function(event) {
     event.preventDefault(); // Evita el envío tradicional del formulario
-
+    
     const formData = {
         nombreTutor: document.getElementById("nombreTutor").value,
         nombreJugador: document.getElementById("nombreJugador").value,
         contraseña: document.getElementById("contraseña").value,
         correo: document.getElementById("correo").value,
-        edadJugador: document.getElementById("edadJugador").value
+        edadJugador: document.getElementById("edadJugador").value,
+        recaptchaToken: grecaptcha.getResponse()
     };
-
+    
     fetch("http://localhost:3000/registrar", {
         method: "POST",
         headers: {
@@ -26,36 +35,6 @@ document.getElementById("formulario__register").addEventListener("submit", funct
     });
 });
 
-// Ejecutando funciones
-document.getElementById("btn__iniciar-sesion").addEventListener("click", iniciarSesion);
-document.getElementById("btn__registrarse").addEventListener("click", register);
-window.addEventListener("resize", anchoPage);
-
-// Declarando variables
-var formulario_login = document.querySelector(".formulario__login");
-var formulario_register = document.querySelector(".formulario__register");
-var contenedor_login_register = document.querySelector(".contenedor__login-register");
-var caja_trasera_login = document.querySelector(".caja__trasera-login");
-var caja_trasera_register = document.querySelector(".caja__trasera-register");
-
-// Funciones
-
-function anchoPage(){
-    if (window.innerWidth > 850){
-        caja_trasera_register.style.display = "block";
-        caja_trasera_login.style.display = "block";
-    } else {
-        caja_trasera_register.style.display = "block";
-        caja_trasera_register.style.opacity = "1";
-        caja_trasera_login.style.display = "none";
-        formulario_login.classList.add("mostrar");
-        formulario_register.classList.remove("mostrar");
-        contenedor_login_register.style.left = "0px";
-    }
-}
-
-anchoPage();
-
 function iniciarSesion() {
     if (window.innerWidth > 850) {
         formulario_login.classList.add("mostrar");
@@ -71,7 +50,6 @@ function iniciarSesion() {
         caja_trasera_login.style.display = "none";
     }
 }
-
 function register() {
     if (window.innerWidth > 850) {
         formulario_register.classList.add("mostrar");
@@ -87,3 +65,46 @@ function register() {
         caja_trasera_login.style.display = "block";
     }
 }
+function anchoPage(){
+    if (window.innerWidth > 850){
+        caja_trasera_register.style.display = "block";
+        caja_trasera_login.style.display = "block";
+    } else {
+        caja_trasera_register.style.display = "block";
+        caja_trasera_register.style.opacity = "1";
+        caja_trasera_login.style.display = "none";
+        formulario_login.classList.add("mostrar");
+        formulario_register.classList.remove("mostrar");
+        contenedor_login_register.style.left = "0px";
+    }
+}
+
+anchoPage();
+// Modal
+const modal = document.getElementById("modal-terminos");
+const btnVerTerminos = document.getElementById("ver-terminos");
+const spanClose = document.getElementsByClassName("close")[0];
+// Modal de términos y condiciones
+btnVerTerminos.onclick = function() {
+    modal.style.display = "block";
+}
+
+spanClose.onclick = function() {
+    modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+// Ejecutando funciones
+document.getElementById("btn__iniciar-sesion").addEventListener("click", iniciarSesion);
+document.getElementById("btn__registrarse").addEventListener("click", register);
+window.addEventListener("resize", anchoPage);
+
+
+// Funciones
+
+
+
