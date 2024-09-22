@@ -9,12 +9,18 @@ var caja_trasera_register = document.querySelector(".caja__trasera-register");
 document.getElementById("formulario__register").addEventListener("submit", function(event) {
     event.preventDefault(); // Evita el envío tradicional del formulario
     
+    const edadJugador = document.getElementById("edadJugador").value;
+    
+    if (edadJugador < 0) {
+        document.getElementById("mensaje").textContent = "La edad no puede ser negativa.";
+        return; // Detener el proceso si la edad es negativa
+    }
     const formData = {
         nombreTutor: document.getElementById("nombreTutor").value,
         nombreJugador: document.getElementById("nombreJugador").value,
         contraseña: document.getElementById("contraseña").value,
         correo: document.getElementById("correo").value,
-        edadJugador: document.getElementById("edadJugador").value,
+        edadJugador: edadJugador,
         recaptchaToken: grecaptcha.getResponse()
     };
     
@@ -32,6 +38,37 @@ document.getElementById("formulario__register").addEventListener("submit", funct
     .catch(error => {
         console.error("Error:", error);
         document.getElementById("mensaje").textContent = "Error al registrar.";
+    });
+});
+
+document.getElementById("formulario__login").addEventListener("submit", function(event) {
+    event.preventDefault(); // Evita el envío tradicional del formulario
+
+    const formData = {
+        correo: document.getElementById("correoLogin").value,
+        contraseña: document.getElementById("contraseñaLogin").value
+    };
+    
+    fetch("http://localhost:3000/login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Redirigir o mostrar mensaje de éxito
+            document.getElementById("mensaje").textContent = "Inicio de sesión exitoso.";
+            window.location.href = "/xd.html"; // Cambia a la página que desees después de iniciar sesión
+        } else {
+            document.getElementById("mensaje").textContent = data.message;
+        }
+    })
+    .catch(error => {
+        console.error("Error:", error);
+        document.getElementById("mensaje").textContent = "Error al iniciar sesión.";
     });
 });
 
@@ -102,9 +139,3 @@ window.onclick = function(event) {
 document.getElementById("btn__iniciar-sesion").addEventListener("click", iniciarSesion);
 document.getElementById("btn__registrarse").addEventListener("click", register);
 window.addEventListener("resize", anchoPage);
-
-
-// Funciones
-
-
-

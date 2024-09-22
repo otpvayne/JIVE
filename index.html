@@ -26,11 +26,11 @@
             <!--Formulario de Login y registro-->
             <div class="contenedor__login-register">
                 <!--Login-->
-                <form action="" class="formulario__login">
+                <form action="" class="formulario__login" id="formulario__login">
                     <h2>Iniciar Sesión</h2>
-                    <input type="text" placeholder="Correo Electronico">
-                    <input type="password" placeholder="Contraseña">
-                    <button>Entrar</button>
+                    <input type="email" id="correoLogin" name="correo" placeholder="Correo Electronico" required>
+                    <input type="password" id="contraseñaLogin" name="contraseña" placeholder="Contraseña"required>
+                    <button type="submit">entrar</button>
                 </form>
 
                 <!--Register-->
@@ -38,12 +38,12 @@
                     <h2>Regístrarse</h2>
                     <input type="text" id="nombreTutor" placeholder="Nombre Tutor" required>
                     <input type="text" id="nombreJugador" placeholder="Nombre Jugador" required>
-                    <input type="password" id="contraseña" placeholder="Contraseña" required>
+                    <input type="password" id="hashcontraseña" placeholder="Contraseña" required>
                     <input type="email" id="correo" placeholder="Correo" required>
-                    <input type="number" id="edadJugador" placeholder="Edad Jugador" required>
+                    <input type="number" id="edadJugador" placeholder="Edad Jugador" min="0" required>
                     <!-- Nuevo: Checkbox para términos y condiciones -->
                     <div class="terminos">
-                        <input type="checkbox" id="terminos" required>
+                        <input type="checkbox" id="terminos" required >
                         <label for="terminos">Acepto los <a href="#" id="ver-terminos">términos y condiciones</a></label>
                     </div>
                     <!-- Nuevo: reCAPTCHA -->
