@@ -139,3 +139,24 @@ window.onclick = function(event) {
 document.getElementById("btn__iniciar-sesion").addEventListener("click", iniciarSesion);
 document.getElementById("btn__registrarse").addEventListener("click", register);
 window.addEventListener("resize", anchoPage);
+
+function toggleDropdown() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+
+function selectDifficulty(difficulty) {
+    document.getElementById("selected-difficulty").innerText = difficulty;
+    toggleDropdown();
+}
+
+window.onclick = function(event) {
+    if (!event.target.matches('.dropdown-button')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        for (var i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+            }
+        }
+    }
+}
