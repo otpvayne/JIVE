@@ -18,7 +18,7 @@ document.getElementById("formulario__register").addEventListener("submit", funct
     const formData = {
         nombreTutor: document.getElementById("nombreTutor").value,
         nombreJugador: document.getElementById("nombreJugador").value,
-        contraseña: document.getElementById("contraseña").value,
+        contraseña: document.getElementById("hashcontraseña").value,
         correo: document.getElementById("correo").value,
         edadJugador: edadJugador,
         recaptchaToken: grecaptcha.getResponse()

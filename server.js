@@ -46,7 +46,7 @@ db.connect((err) => {
 // Función para verificar reCAPTCHA
 async function verificarReCaptcha(token) {
     const secretKey = "6LedOUsqAAAAALgMiCCbv6iRCIXhIdZxLt5utv07";
-    const verificationURL = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${token}`;
+    const verificationURL = 'https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${token}';
 
     try {
         const response = await axios.post(verificationURL);
