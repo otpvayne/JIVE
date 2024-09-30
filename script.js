@@ -61,7 +61,7 @@ document.getElementById("formulario__login").addEventListener("submit", function
         if (data.success) {
             // Redirigir o mostrar mensaje de éxito
             document.getElementById("mensaje").textContent = "Inicio de sesión exitoso.";
-            window.location.href = "/xd.html"; // Cambia a la página que desees después de iniciar sesión
+            window.location.href = "https://ninonkn.github.io/"; // Cambia a la página que desees después de iniciar sesión
         } else {
             document.getElementById("mensaje").textContent = data.message;
         }
